@@ -1,8 +1,13 @@
 import emojiIcon from './assets/emoji icon-05.svg'
 import questionIcon from './assets/question icon-05.svg'
+import { useState } from 'react'
 import './App.css'
 
 function App() {
+  const [activeSection, setActiveSection] = useState<string | null>(null)
+
+  const closeModal = () => setActiveSection(null)
+
   return (
     <div className="page">
       <header className="top-bar">
@@ -22,17 +27,42 @@ function App() {
 
       <main className="hero">
         <div className="choice-grid">
-          <button className="choice-card choice-card--moral" type="button">
+          <button
+            className="choice-card choice-card--moral"
+            type="button"
+            onClick={() => setActiveSection('Moral')}
+          >
             Moral
           </button>
-          <button className="choice-card choice-card--creative" type="button">
+          <button
+            className="choice-card choice-card--creative"
+            type="button"
+            onClick={() => setActiveSection('Creative')}
+          >
             Creative
           </button>
-          <button className="choice-card choice-card--ai" type="button">
+          <button
+            className="choice-card choice-card--ai"
+            type="button"
+            onClick={() => setActiveSection('AI Skill Development')}
+          >
             AI Skill Development
           </button>
         </div>
       </main>
+
+      {activeSection && (
+        <div className="modal-overlay" role="dialog" aria-modal="true">
+          <div className="modal">
+            <button className="modal-close" type="button" onClick={closeModal}>
+              Close
+            </button>
+            <p className="modal-text">
+              This is the {activeSection} section
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

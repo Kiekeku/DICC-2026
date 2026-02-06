@@ -101,6 +101,43 @@
   background: #ffb35f;
 }
 
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(34, 30, 26, 0.35);
+  display: grid;
+  place-items: center;
+  z-index: 10;
+}
+
+.modal {
+  width: min(88vw, 880px);
+  min-height: min(70vh, 520px);
+  background: #fffaf0;
+  border: 2px solid #2b2621;
+  border-radius: 26px;
+  padding: 32px;
+  display: grid;
+  align-content: center;
+  gap: 18px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(43, 38, 33, 0.2);
+}
+
+.modal-text {
+  font-size: 1.4rem;
+}
+
+.modal-close {
+  justify-self: end;
+  padding: 6px 14px;
+  border: 1.5px solid #5b544b;
+  border-radius: 999px;
+  background: #ffffff;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
 @media (max-width: 900px) {
   .choice-grid {
     grid-template-columns: 1fr;
