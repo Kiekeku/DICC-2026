@@ -1,5 +1,5 @@
 {
-  "Moral": "Here is the moral question: ",
-  "Creative": "This is the Creative section",
-  "AI Skill Development": "This is the AI Skill Development section"
+  "Moral": "You and a friend auditioned for a role, you got the role. Your friend is upset, what do you do?",
+  "Creative": "How would you explain social media to a 5 year old?",
+  "AI Skill Development": "Use any LLM of your preference to simplify string theory and explain it to a 5th grader?"
 }
