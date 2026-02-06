@@ -1,7 +1,9 @@
 import emojiIcon from './assets/emoji icon-05.svg'
 import questionIcon from './assets/question icon-05.svg'
+import brandIcon from './assets/bread-05.svg'
 import { useState } from 'react'
 import './App.css'
+import sectionCopy from './content/sections.json'
 
 function App() {
   const [activeSection, setActiveSection] = useState<string | null>(null)
@@ -12,6 +14,10 @@ function App() {
     <div className="page">
       <header className="top-bar">
         <div className="top-bar__line" />
+        <div className="top-bar__brand">
+          <img src={brandIcon} alt="Multigrain logo" />
+          <span>Multigrain</span>
+        </div>
         <div className="top-bar__controls">
           <button className="icon-button" type="button" aria-label="Mood selector">
             <img src={emojiIcon} alt="Mood selector" />
@@ -54,12 +60,22 @@ function App() {
       {activeSection && (
         <div className="modal-overlay" role="dialog" aria-modal="true">
           <div className="modal">
-            <button className="modal-close" type="button" onClick={closeModal}>
-              Close
-            </button>
+            <button
+              className="modal-close"
+              type="button"
+              onClick={closeModal}
+              aria-label="Close"
+            />
             <p className="modal-text">
-              This is the {activeSection} section
+              {sectionCopy[activeSection] ?? `This is the ${activeSection} section`}
             </p>
+            <label className="modal-field">
+              <textarea
+                className="modal-textarea"
+                rows={6}
+                placeholder="Type your answer here..."
+              />
+            </label>
           </div>
         </div>
       )}
