@@ -1,3 +1,5 @@
+import emojiIcon from './assets/emoji icon-05.svg'
+import questionIcon from './assets/question icon-05.svg'
 import './App.css'
 
 function App() {
@@ -6,19 +8,11 @@ function App() {
       <header className="top-bar">
         <div className="top-bar__line" />
         <div className="top-bar__controls">
-          <div className="pill pill--faces" aria-label="Mood selector">
-            <span className="face face--happy" role="img" aria-label="happy">
-              🙂
-            </span>
-            <span className="face face--neutral" role="img" aria-label="neutral">
-              😐
-            </span>
-            <span className="face face--sad" role="img" aria-label="sad">
-              🙁
-            </span>
-          </div>
-          <button className="pill pill--icon" type="button" aria-label="Help">
-            ?
+          <button className="icon-button" type="button" aria-label="Mood selector">
+            <img src={emojiIcon} alt="Mood selector" />
+          </button>
+          <button className="icon-button" type="button" aria-label="Help">
+            <img src={questionIcon} alt="Help" />
           </button>
           <button className="pill pill--text" type="button">
             Log In/Sign Up

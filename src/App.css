@@ -40,38 +40,19 @@
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
 }
 
-.pill--faces {
-  display: flex;
-  gap: 8px;
-  padding: 6px 14px;
-}
-
-.face {
-  width: 22px;
-  height: 22px;
+.icon-button {
+  padding: 0;
+  border: none;
+  background: none;
   display: grid;
   place-items: center;
-  border-radius: 50%;
-  font-size: 0.8rem;
+  cursor: pointer;
 }
 
-.face--happy {
-  background: #ffe0a3;
-}
-
-.face--neutral {
-  background: #ffbf69;
-}
-
-.face--sad {
-  background: #ffab47;
-}
-
-.pill--icon {
-  width: 44px;
-  height: 30px;
-  padding: 0;
-  font-size: 1.1rem;
+.icon-button img {
+  height: 28px;
+  width: auto;
+  display: block;
 }
 
 .pill--text {
