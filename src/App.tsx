@@ -1,34 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="page">
+      <header className="top-bar">
+        <div className="top-bar__line" />
+        <div className="top-bar__controls">
+          <div className="pill pill--faces" aria-label="Mood selector">
+            <span className="face face--happy" role="img" aria-label="happy">
+              🙂
+            </span>
+            <span className="face face--neutral" role="img" aria-label="neutral">
+              😐
+            </span>
+            <span className="face face--sad" role="img" aria-label="sad">
+              🙁
+            </span>
+          </div>
+          <button className="pill pill--icon" type="button" aria-label="Help">
+            ?
+          </button>
+          <button className="pill pill--text" type="button">
+            Log In/Sign Up
+          </button>
+        </div>
+      </header>
+
+      <main className="hero">
+        <div className="choice-grid">
+          <button className="choice-card choice-card--moral" type="button">
+            Moral
+          </button>
+          <button className="choice-card choice-card--creative" type="button">
+            Creative
+          </button>
+          <button className="choice-card choice-card--ai" type="button">
+            AI Skill Development
+          </button>
+        </div>
+      </main>
+    </div>
   )
 }
 
