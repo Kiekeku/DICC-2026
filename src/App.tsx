@@ -10,12 +10,13 @@ import { useState } from 'react'
 import './App.css'
 import sectionCopy from './content/sections.json'
 
+type Section = keyof typeof sectionCopy
+
 function App() {
-  const [activeSection, setActiveSection] = useState<string | null>(null)
+  const [activeSection, setActiveSection] = useState<Section | null>(null)
   const [currentPage, setCurrentPage] = useState<'home' | 'section'>('home')
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [sectionResponse, setSectionResponse] = useState('')
-  const [shareLink, setShareLink] = useState('')
   const [reactionCounts, setReactionCounts] = useState([
     { happy: 4, laugh: 2, mid: 1, sad: 0, angry: 0 },
     { happy: 1, laugh: 0, mid: 3, sad: 0, angry: 0 },
@@ -26,33 +27,17 @@ function App() {
   ])
 
   const closeModal = () => setIsModalOpen(false)
-  const openModal = (section: string) => {
+  const openModal = (section: Section) => {
     setActiveSection(section)
     setIsModalOpen(true)
   }
   const openSectionPage = () => {
     setIsModalOpen(false)
     setCurrentPage('section')
-    const baseUrl =
-      typeof window !== 'undefined' ? window.location.origin : 'https://prompty.app'
-    const sessionId =
-      typeof crypto !== 'undefined' && 'randomUUID' in crypto
-        ? crypto.randomUUID()
-        : `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
-    setShareLink(`${baseUrl}/?session=${sessionId}`)
   }
   const goHome = () => {
     setCurrentPage('home')
     setSectionResponse('')
-    setShareLink('')
-  }
-  const copyShareLink = async () => {
-    if (!shareLink) return
-    try {
-      await navigator.clipboard.writeText(shareLink)
-    } catch {
-      // Ignore clipboard failures in unsupported browsers.
-    }
   }
   const setReaction = (cardIndex: number, key: keyof (typeof reactionCounts)[number]) => {
     setReactionCounts((prev) =>
@@ -83,10 +68,10 @@ function App() {
         </div>
         <h1 className="page-title">Prompty</h1>
         <div className="top-bar__controls">
-          <button className="icon-button" type="button" aria-label="Help">
+          <button className="icon-button" type="button" aria-label="Help unavailable in this prototype" disabled>
             <img src={questionIcon} alt="Help" />
           </button>
-          <button className="icon-button" type="button" aria-label="Log In or Sign Up">
+          <button className="icon-button" type="button" aria-label="Sign-in unavailable in this prototype" disabled>
             <img src={loginButton} alt="Log In/Sign Up" />
           </button>
         </div>
@@ -123,11 +108,8 @@ function App() {
           <div className="section-top">
             <div className="share-panel share-panel--compact">
               <div className="share-text">
-                Share this link to invite friends to respond and react.
+                Prototype preview. Responses and reactions stay in this tab.
               </div>
-              <button className="share-copy" type="button" onClick={copyShareLink}>
-                Copy link
-              </button>
             </div>
             <button className="back-button" type="button" onClick={goHome}>
               Back
@@ -138,7 +120,7 @@ function App() {
               <div className="section-header">
                 <span className="section-kicker">Prompt</span>
                 <h2 className="section-prompt">
-                  {sectionCopy[activeSection] ?? `This is the ${activeSection} section`}
+                  {sectionCopy[activeSection]}
                 </h2>
               </div>
 
@@ -219,7 +201,7 @@ function App() {
               aria-label="Close"
             />
             <p className="modal-text">
-              {sectionCopy[activeSection] ?? `This is the ${activeSection} section`}
+              {sectionCopy[activeSection]}
             </p>
             <label className="modal-field">
               <textarea
@@ -234,7 +216,7 @@ function App() {
                 type="button"
                 onClick={openSectionPage}
               >
-                Submit and share
+                Show response
               </button>
             </label>
           </div>
